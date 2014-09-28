@@ -1,10 +1,9 @@
 # profiliing
-#zmodload zsh/zprof && zprof
+# zmodload zsh/zprof && zprof
 
 export EDITOR='vim'
 
 # aliases
-alias sfr="open -a Safari"
 alias prv="open -a Preview"
 alias starttoday="open -a Omnifocus | open -a mail | open -a icompta | open -a ical | open -a pomodoro\ timer"
 alias dic="sdcv"
