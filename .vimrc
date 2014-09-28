@@ -5,10 +5,7 @@ syntax enable
 "Show number of row
 set number
 filetype off
-"call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
 set helpfile=$VIMRUNTIME/doc/help.txt
-call pathogen#infect()
 filetype on
 filetype plugin indent on
 "Check file type
@@ -59,6 +56,9 @@ imap <C-f> <Right>
 "vnoremap ( "zdi(<C-R>z)<ESC>
 "vnoremap " "zdi"<C-R>z"<ESC>
 "vnoremap ' "zdi'<C-R>z'<ESC>
+
+nnoremap ; :
+nnoremap : ;
 
 "FOR PHP
 "Check grammar by :make
