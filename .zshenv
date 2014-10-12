@@ -10,6 +10,7 @@ alias dic="sdcv"
 alias atom="open -a atom"
 alias o="open -a"
 alias chrome="open -a 'google chrome'"
+alias vi=/usr/local/bin/vim
 
 # go
 export GOROOT=/usr/local/Cellar/go/1.3/libexec
