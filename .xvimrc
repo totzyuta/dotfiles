@@ -76,8 +76,3 @@ let php_htmlInStrings = 1
 "Check grammar by :make
 au FileType ruby setlocal makeprg=ruby\ -c\ %
 au FileType ruby setlocal errorformat=%\ in\ %f\ on\ line\ %|
-
-"Comment
-NeoBundle "tyru/caw.vim.git"
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
