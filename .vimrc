@@ -76,3 +76,6 @@ let php_htmlInStrings = 1
 "Check grammar by :make
 au FileType ruby setlocal makeprg=ruby\ -c\ %
 au FileType ruby setlocal errorformat=%\ in\ %f\ on\ line\ %|
+
+"For Dash Shorcut
+Plugin 'rizzatti/dash.vim'

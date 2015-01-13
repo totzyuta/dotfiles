@@ -2,15 +2,20 @@
 # for peco
 function peco-select-history() {
   local tac
-  echo "from peco-select-history function"
   if which tac > /dev/null; then
     tac="tac"
   else
     tac="tail -r"
   fi
-  BUFFER=$(\history -n 1 | \
-    eval $tac | \
-    ~/.go/bin/peco --query "$LBUFFER")
+  if [ -n "$LBUFFER" ]; then
+    BUFFER=$(\history -n 1 | \
+      eval $tac | \
+      ~/.go/bin/peco --query "$LBUFFER")
+  else
+    BUFFER=$(\history -n 1 | \
+      eval $tac | \
+      ~/.go/bin/peco)
+  fi
   CURSOR=$#BUFFER
   zle clear-screen
 }
