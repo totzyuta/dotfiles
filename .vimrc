@@ -12,6 +12,9 @@ filetype plugin indent on
 filetype plugin on
 "emphasize current row
 "set cursorline
+"set information on status line
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set laststatus=2 
 "Not create swap file
 set noswapfile
 "Enable to see when scrolling
@@ -25,6 +28,8 @@ set incsearch
 set showcmd
 "auto indent
 set autoindent
+"Hilight hidden by double ESC
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
 "Keep space of indent
 set smartindent
 "Settingof tab
@@ -83,3 +88,8 @@ call vundle#begin()
 "Dash Shorcut
 Plugin 'rizzatti/dash.vim'
 call vundle#end()
+
+"Comment
+NeoBundle "tyru/caw.vim.git"
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
