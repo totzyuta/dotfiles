@@ -77,5 +77,9 @@ let php_htmlInStrings = 1
 au FileType ruby setlocal makeprg=ruby\ -c\ %
 au FileType ruby setlocal errorformat=%\ in\ %f\ on\ line\ %|
 
-"For Dash Shorcut
+"Vundle Plugin
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"Dash Shorcut
 Plugin 'rizzatti/dash.vim'
+call vundle#end()

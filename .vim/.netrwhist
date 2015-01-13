@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/totz/workspace/CoffeeNote/app/assets/stylesheets'
+let g:netrw_dirhist_2='/Users/totz/workspace/casual_job/include'
+let g:netrw_dirhist_3='/Users/totz/workspace/CoffeeNote/app/views/notes'
+let g:netrw_dirhist_4='/Users/totz/workspace/CoffeeNote/app/assets/stylesheets/inside'
+let g:netrw_dirhist_5='/Users/totz/workspace/CoffeeNote/app/views/notes'
+let g:netrw_dirhist_6='/Users/totz/.vim'
+let g:netrw_dirhist_7='/Users/totz/dotfiles'
