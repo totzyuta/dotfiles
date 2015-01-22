@@ -82,14 +82,19 @@ let php_htmlInStrings = 1
 au FileType ruby setlocal makeprg=ruby\ -c\ %
 au FileType ruby setlocal errorformat=%\ in\ %f\ on\ line\ %|
 
+"For Python
+"Syntax High
+"
+""For Python
+"Syntax Highlighting
+let python_highlight_all = 1
+
 "Vundle Plugin
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"Dash Shorcut
 Plugin 'rizzatti/dash.vim'
+Plugin 'scrooloose/nerdtree'
 call vundle#end()
 
-"Comment
-NeoBundle "tyru/caw.vim.git"
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
+"Shorcut for NerdTree
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
