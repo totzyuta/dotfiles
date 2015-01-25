@@ -69,10 +69,9 @@ nnoremap : ;
 set nf=alpha
 
 "Run Script on Vim
-autocmd BufNewFile,BufRead *.rb nnoremap <C-x> :!ruby %
-autocmd BufNewFile,BufRead *.py nnoremap <C-x> :!python %
-autocmd BufNewFile,BufRead *.pl nnoremap <C-x> :!perl %
-
+autocmd BufNewFile,BufRead *.rb nnoremap <C-p> :!ruby %
+autocmd BufNewFile,BufRead *.py nnoremap <C-p> :!python %
+autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
 
 "FOR PHP
 "Check grammar by :make
@@ -88,9 +87,6 @@ let php_htmlInStrings = 1
 au FileType ruby setlocal makeprg=ruby\ -c\ %
 au FileType ruby setlocal errorformat=%\ in\ %f\ on\ line\ %|
 
-"For Python
-"Syntax High
-"
 ""For Python
 "Syntax Highlighting
 let python_highlight_all = 1
