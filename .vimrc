@@ -101,9 +101,14 @@ call vundle#begin()
 Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()
 
 "Shorcut for NerdTree
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 highlight SignColumn guibg=black
 highlight SignColumn ctermbg=black
+
+"For indentLine
+"Change Color
+let g:indentLine_color_term = 4
