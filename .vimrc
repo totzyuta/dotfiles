@@ -68,6 +68,12 @@ nnoremap : ;
 " increment for alphabet
 set nf=alpha
 
+"Run Script on Vim
+autocmd BufNewFile,BufRead *.rb nnoremap <C-x> :!ruby %
+autocmd BufNewFile,BufRead *.py nnoremap <C-x> :!python %
+autocmd BufNewFile,BufRead *.pl nnoremap <C-x> :!perl %
+
+
 "FOR PHP
 "Check grammar by :make
 au FileType php setlocal makeprg=php\ -|\ %
