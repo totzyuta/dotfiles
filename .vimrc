@@ -94,7 +94,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 
 "Shorcut for NerdTree
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+highlight SignColumn guibg=black
+highlight SignColumn ctermbg=black
