@@ -136,3 +136,5 @@ export PATH="usr/bin:usr/local/heroku/bin:/Users/yuta/.rvm/gems/ruby-2.1-head/bi
 
 
 bindkey '^r' peco-select-history
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
