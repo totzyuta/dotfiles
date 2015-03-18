@@ -68,6 +68,11 @@ nnoremap : ;
 " increment for alphabet
 set nf=alpha
 
+"Run Script on Vim
+autocmd BufNewFile,BufRead *.rb nnoremap <C-p> :!ruby %
+autocmd BufNewFile,BufRead *.py nnoremap <C-p> :!python %
+autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
+
 "FOR PHP
 "Check grammar by :make
 au FileType php setlocal makeprg=php\ -|\ %
@@ -198,3 +203,16 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 """"""""""""""""""""""""""""""
+
+""For Python
+"Syntax Highlighting
+let python_highlight_all = 1
+
+"Shorcut for NerdTree
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+highlight SignColumn guibg=black
+highlight SignColumn ctermbg=black
+
+"For indentLine
+"Change Color
+let g:indentLine_color_term = 4
