@@ -7,5 +7,5 @@ syntastic
 unite.vim
 vim-autoclose
 vim-slime
-vimproc
+vimproc.vim
 vimshell
