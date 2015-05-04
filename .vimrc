@@ -1,93 +1,3 @@
-"vi = Vim
-set nocompatible
-"Enable Syntax hilight
-syntax enable
-"Show number of row
-set number
-filetype off
-set helpfile=$VIMRUNTIME/doc/help.txt
-filetype on
-filetype plugin indent on
-"Check file type
-filetype plugin on
-"emphasize current row
-"set cursorline
-"set information on status line
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set laststatus=2 
-"Not create swap file
-set noswapfile
-"Enable to see when scrolling
-set scrolloff=5
-"Use clipboard of OS
-set clipboard+=unnamed
-set clipboard=unnamed
-"Enable incremental search
-set incsearch
-"Show command in status row
-set showcmd
-"auto indent
-set autoindent
-"Hilight hidden by double ESC
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-"Keep space of indent
-set smartindent
-"Settingof tab
-set tabstop=2
-set shiftwidth=2
-set expandtab
-"indent depended on file type
-filetype indent on
-"Strong auto command
-set wildmenu
-"Show list
-set wildmode=list:full
-"Enable hilight by search
-set hlsearch
-"move to brancket
-nnoremap [ %
-nnoremap ] %
-"move like emacs
-imap <C-f> <Right>
-"auto complement of brankets
-
-"inoremap { {}<LEFT>
-"inoremap [ []<LEFT>
-"inoremap ( ()<LEFT>
-"inoremap " ""<LEFT>
-"inoremap ' ''<LEFT>
-"vnoremap { "zdi{<C-R>z}<ESC>
-"vnoremap [ "zdi[<C-R>z]<ESC>
-"vnoremap ( "zdi(<C-R>z)<ESC>
-"vnoremap " "zdi"<C-R>z"<ESC>
-"vnoremap ' "zdi'<C-R>z'<ESC>
-
-nnoremap ; :
-nnoremap : ;
-
-" increment for alphabet
-set nf=alpha
-
-"Run Script on Vim
-autocmd BufNewFile,BufRead *.rb nnoremap <C-p> :!ruby %
-autocmd BufNewFile,BufRead *.py nnoremap <C-p> :!python %
-autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
-
-"FOR PHP
-"Check grammar by :make
-au FileType php setlocal makeprg=php\ -|\ %
-au FileType php setlocal errorformat=$m\ in\ %f\ on\ line\ %|
-"Hilight SQL
-let php_sql_query = 1
-"Hilight HTML
-let php_htmlInStrings = 1
-
-"FOR Ruby
-"Check grammar by :make
-au FileType ruby setlocal makeprg=ruby\ -c\ %
-au FileType ruby setlocal errorformat=%\ in\ %f\ on\ line\ %|
-
-
 """"""""""""""""""""
 " NeoBundle 
 """"""""""""""""""""
@@ -124,21 +34,160 @@ filetype plugin indent on
 NeoBundleCheck
 " originalrepos on github
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-      \   'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'linux' : 'make',
-      \     'unix' : 'gmake',
-      \   }
-      \ }
+""""""""""""""""""""
 
-NeoBundle 'VimClojure'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
 
-"neocomplcache for auto completing
+""""""""""""""""""""
+" Basic Setting for Vim
+""""""""""""""""""""
+"Enable Syntax hilight
+syntax enable
+
+"Show number of row
+set number
+
+" Encoding utf-8
+set encoding=utf-8
+
+" Auto detecting file types off 
+" and turn on in the end of this file
+filetype off
+filetype plugin indent off
+
+"emphasize current row
+"set cursorline
+
+"Not create swap file
+set noswapfile
+
+"Enable to see when scrolling
+set scrolloff=5
+
+"Use clipboard of OS
+set clipboard+=unnamed
+set clipboard=unnamed
+
+"Enable incremental search
+set incsearch
+
+"Show command in status row
+set showcmd
+
+"auto indent
+set autoindent
+
+"Hilight hidden by double ESC
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
+"Keep space of indent
+set smartindent
+
+"Settingof tab
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+"Strong auto command
+set wildmenu
+"Show list
+set wildmode=list:full
+
+"Enable hilight by search
+set hlsearch
+
+"move to brancket
+nnoremap [ %
+nnoremap ] %
+
+"move like emacs
+imap <C-f> <Right>
+"auto complement of brankets
+
+nnoremap ; :
+nnoremap : ;
+
+" increment for alphabet
+set nf=alpha
+
+"Run Script on Vim
+autocmd BufNewFile,BufRead *.rb nnoremap <C-p> :!ruby %
+autocmd BufNewFile,BufRead *.py nnoremap <C-p> :!python %
+autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
+""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
+" Hilight for Some Languages
+""""""""""""""""""""""""""""""
+"For Python syntacs hilight
+let python_highlight_all = 1
+
+" syntacs hilight for slim
+NeoBundle 'slim-template/vim-slim'
+autocmd BufNewFile,BufRead *.slim set ft=slim
+
+" Syntacs highlighting for CoffeeScript
+NeoBundle 'kchmck/vim-coffee-script'
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+
+" hilight for yaml
+NeoBundle 'chase/vim-ansible-yaml'
+
+"Hilight SQL
+let php_sql_query = 1
+
+"Hilight HTML
+let php_htmlInStrings = 1
+""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
+" Libraries
+""""""""""""""""""""""""""""""
+" Emacs like key binding 
+NeoBundle 'jpalardy/vim-slime'
+
+" Check syntacs error
+NeoBundle 'scrooloose/syntastic'
+
+" Auto Closing for Branckets and Quotations
+NeoBundle 'Townk/vim-autoclose'
+
+" For great references
+NeoBundle 'rizzatti/dash.vim'
+
+"Benchmark for vimrc
+NeoBundle 'mattn/benchvimrc-vim'
+
+" Comment out easily by '\c'
+NeoBundle "tyru/caw.vim.git"
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
+" Customized status line
+set laststatus=2
+NeoBundle 'bling/vim-airline'
+  let g:airline#extensions#branch#enabled = 0
+  let g:airline_section_b =
+        \ '%{airline#extensions#branch#get_head()}' .
+        \ '%{""!=airline#extensions#branch#get_head()?("  " . g:airline_left_alt_sep . " "):""}' .
+        \ '%t%( %M%)'
+  let g:airline_section_c = ''
+  let g:airline_theme='bubblegum'
+  let g:airline#extensions#whitespace#enabled = 0
+
+" Tree 
+NeoBundle 'scrooloose/nerdtree'
+"ForNERDTree shortcut
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+highlight SignColumn guibg=black
+highlight SignColumn ctermbg=black
+""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
+" neocomplcache for auto completing
+""""""""""""""""""""""""""""""
 NeoBundle 'Shougo/neocomplcache'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -158,8 +207,7 @@ let g:neocomplcache_dictionary_filetype_lists = {
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
+" key-mappings for auto complement
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
@@ -174,57 +222,26 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " 補完候補が表示されている場合は確定。そうでない場合は改行
 inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
-
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'jpalardy/vim-slime'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'scrooloose/syntastic'
-
-syntax on
-
-"ForNERDTree shortcut
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-"Comment
-"NeoBundle "tyru/caw.vim.git"
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
-
-""""""""""""""""""""""""""""""
-" Unit.vimの設定
-""""""""""""""""""""""""""""""
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
-" バッファ一覧
-noremap <C-P> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
-" 最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
-" sourcesを「今開いているファイルのディレクトリ」とする
-noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 """"""""""""""""""""""""""""""
 
-""For Python
-"Syntax Highlighting
-let python_highlight_all = 1
 
-"Shorcut for NerdTree
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-highlight SignColumn guibg=black
-highlight SignColumn ctermbg=black
+""""""""""""""""""""""""""""""
+" Challenging Stage
+""""""""""""""""""""""""""""""
+NeoBundle 'Yggdroot/indentLine'
+let g:indentLine_faster = 1
+let g:indentLine_color_term = 240
+nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 
-"For indentLine
-"Change Color
-let g:indentLine_color_term = 4
+"Git tool for vim
+NeoBundle 'tpope/vim-fugitive'
+
+"show diff of git while editing
+NeoBundle 'akiomik/git-gutter-vim'
+nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+""""""""""""""""""""""""""""""
+
+
+" Auto detecting file type
+filetype plugin indent on
