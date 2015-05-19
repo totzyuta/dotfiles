@@ -138,6 +138,9 @@ let php_sql_query = 1
 
 "Hilight HTML
 let php_htmlInStrings = 1
+
+"Hilight for Scala
+NeoBundle "derekwyatt/vim-scala"
 """"""""""""""""""""""""""""""
 
 

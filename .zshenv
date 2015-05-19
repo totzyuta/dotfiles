@@ -12,6 +12,9 @@ alias o="open -a"
 alias chrome="open -a 'google chrome'"
 alias vi=/usr/local/bin/vim
 
+# git
+alias "git log --graph"="git log --graph --branches --pretty=format:'%d [%h] \"%s\""
+
 # go
 export GOROOT=/usr/local/Cellar/go/1.3.3/libexec
 export GOPATH=~/.go

@@ -12,5 +12,6 @@ vim-ansible-yaml
 vim-autoclose
 vim-coffee-script
 vim-fugitive
+vim-scala
 vim-slim
 vim-slime
