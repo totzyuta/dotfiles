@@ -1,3 +1,5 @@
+echo "Hi, welcome to playground"
+
 # for peco
 function peco-select-history() {
   local tac
@@ -53,8 +55,8 @@ export CONFIG_HOME="$HOME/dotfiles"
 export ZSH_CONFIG="$CONFIG_HOME/zsh"
 
 # Import zsh config files
-sources+="$ZSH_CONFIG/aliases.zsh"
-sources+="$ZSH_CONFIG/exports.zsh"
+source "$ZSH_CONFIG/aliases.zsh"
+source "$ZSH_CONFIG/exports.zsh"
 
 bindkey '^r' peco-select-history
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
