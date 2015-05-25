@@ -1,12 +1,3 @@
-# Base Directory Specification
-export CONFIG_HOME="$HOME/dotfiles"
-export ZSH_CONFIG="$CONFIG_HOME/dotfiles/zsh"
-
-# Import zsh config files
-sources+="$ZSH_CONFIG/aliases.zsh"
-sources+="$ZSH_CONFIG/exports.zsh"
-
-
 # for peco
 function peco-select-history() {
   local tac
@@ -53,7 +44,17 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-# my configuration
+####################
+# my configuration #
+####################
+
+# Base Directory Specification
+export CONFIG_HOME="$HOME/dotfiles"
+export ZSH_CONFIG="$CONFIG_HOME/zsh"
+
+# Import zsh config files
+sources+="$ZSH_CONFIG/aliases.zsh"
+sources+="$ZSH_CONFIG/exports.zsh"
 
 bindkey '^r' peco-select-history
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
