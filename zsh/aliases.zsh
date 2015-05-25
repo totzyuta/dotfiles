@@ -1,13 +1,9 @@
-# profiliing
-# zmodload zsh/zprof && zprof
-
-export EDITOR='vim'
-
 # aliases
+
+# applications
 alias prv="open -a Preview"
-alias starttoday="open -a Omnifocus | open -a mail | open -a icompta | open -a ical | open -a pomodoro\ timer"
+alias starttoday="open -a 'google chrome' | open -a mail | open -a ical | open -a pomodoro\ timer"
 alias dic="sdcv"
-alias atom="open -a atom"
 alias o="open -a"
 alias chrome="open -a 'google chrome'"
 alias vi=/usr/local/bin/vim
