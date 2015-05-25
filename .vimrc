@@ -20,21 +20,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-" originalrepos on github
-NeoBundle 'Shougo/neobundle.vim'
-""""""""""""""""""""
 
 
 """"""""""""""""""""
@@ -246,5 +231,15 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 """"""""""""""""""""""""""""""
 
 
-" Auto detecting file type
+""""""""""""""""""""""""""""""
+" NeoBundle Ends
+""""""""""""""""""""""""""""""
+call neobundle#end()
+
+" Required:
 filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+""""""""""""""""""""
