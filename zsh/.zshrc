@@ -60,3 +60,6 @@ source "$ZSH_CONFIG/exports.zsh"
 
 bindkey '^r' peco-select-history
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

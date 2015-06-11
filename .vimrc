@@ -107,9 +107,13 @@ autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
 "For Python syntacs hilight
 let python_highlight_all = 1
 
-" syntacs hilight for slim
+" syntax highlight for slim
 NeoBundle 'slim-template/vim-slim'
 autocmd BufNewFile,BufRead *.slim set ft=slim
+
+" syntax highlight for haml
+NeoBundle 'tpope/vim-haml'
+autocmd BufNewFile,BufRead *.haml set ft=haml
 
 " Syntacs highlighting for CoffeeScript
 NeoBundle 'kchmck/vim-coffee-script'
@@ -217,7 +221,7 @@ inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 " Challenging Stage
 """"""""""""""""""""""""""""""
 NeoBundle 'Yggdroot/indentLine'
-let g:indentLine_faster = 1
+" let g:indentLine_faster = 1
 let g:indentLine_color_term = 240
 nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 
