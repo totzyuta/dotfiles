@@ -23,14 +23,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 
 """"""""""""""""""""
-" Basic Setting for Vim
+" Basic Setting 
 """"""""""""""""""""
-"Enable Syntax hilight
-syntax enable
-
-"Show number of row
-set number
-
 " Encoding utf-8
 set encoding=utf-8
 
@@ -67,7 +61,7 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 "Keep space of indent
 set smartindent
 
-"Settingof tab
+"Setting of TAB
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -84,10 +78,18 @@ set hlsearch
 nnoremap [ %
 nnoremap ] %
 
+"autocompletation for brankets 
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+
+" Auto Closing for Branckets and Quotations
+NeoBundle 'Townk/vim-autoclose'
+
 "move like emacs
 imap <C-f> <Right>
-"auto complement of brankets
 
+" Replace only in command mode
 nnoremap ; :
 nnoremap : ;
 
@@ -102,8 +104,66 @@ autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
 
 
 """"""""""""""""""""""""""""""
+" Libraries
+""""""""""""""""""""""""""""""
+" Emacs like key binding 
+NeoBundle 'jpalardy/vim-slime'
+
+" Check syntacs error
+NeoBundle 'scrooloose/syntastic'
+
+" For great references
+NeoBundle 'rizzatti/dash.vim'
+
+"Benchmark for vimrc
+NeoBundle 'mattn/benchvimrc-vim'
+
+" Comment out easily by '\c'
+NeoBundle "tyru/caw.vim.git"
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
+" Tree 
+NeoBundle 'scrooloose/nerdtree'
+"ForNERDTree shortcut
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+highlight SignColumn guibg=black
+highlight SignColumn ctermbg=black
+""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
+" Appearance
+""""""""""""""""""""""""""""""
+"Show number of row
+set number
+
+" Gray Indent Line
+NeoBundle 'Yggdroot/indentLine'
+" let g:indentLine_faster = 1
+let g:indentLine_color_term = 240
+nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+
+" Customized status line
+set laststatus=2
+NeoBundle 'bling/vim-airline'
+  let g:airline#extensions#branch#enabled = 0
+  let g:airline_section_b =
+        \ '%{airline#extensions#branch#get_head()}' .
+        \ '%{""!=airline#extensions#branch#get_head()?("  " . g:airline_left_alt_sep . " "):""}' .
+        \ '%t%( %M%)'
+  let g:airline_section_c = ''
+  let g:airline_theme='bubblegum'
+  let g:airline#extensions#whitespace#enabled = 0
+""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
 " Hilight for Some Languages
 """"""""""""""""""""""""""""""
+"Enable Syntax hilight
+syntax enable
+
 "For Python syntacs hilight
 let python_highlight_all = 1
 
@@ -130,50 +190,6 @@ let php_htmlInStrings = 1
 
 "Hilight for Scala
 NeoBundle "derekwyatt/vim-scala"
-""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""
-" Libraries
-""""""""""""""""""""""""""""""
-" Emacs like key binding 
-NeoBundle 'jpalardy/vim-slime'
-
-" Check syntacs error
-NeoBundle 'scrooloose/syntastic'
-
-" Auto Closing for Branckets and Quotations
-NeoBundle 'Townk/vim-autoclose'
-
-" For great references
-NeoBundle 'rizzatti/dash.vim'
-
-"Benchmark for vimrc
-NeoBundle 'mattn/benchvimrc-vim'
-
-" Comment out easily by '\c'
-NeoBundle "tyru/caw.vim.git"
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
-
-" Customized status line
-set laststatus=2
-NeoBundle 'bling/vim-airline'
-  let g:airline#extensions#branch#enabled = 0
-  let g:airline_section_b =
-        \ '%{airline#extensions#branch#get_head()}' .
-        \ '%{""!=airline#extensions#branch#get_head()?("  " . g:airline_left_alt_sep . " "):""}' .
-        \ '%t%( %M%)'
-  let g:airline_section_c = ''
-  let g:airline_theme='bubblegum'
-  let g:airline#extensions#whitespace#enabled = 0
-
-" Tree 
-NeoBundle 'scrooloose/nerdtree'
-"ForNERDTree shortcut
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-highlight SignColumn guibg=black
-highlight SignColumn ctermbg=black
 """"""""""""""""""""""""""""""
 
 
@@ -218,20 +234,20 @@ inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 
 
 """"""""""""""""""""""""""""""
-" Challenging Stage
+" Git Settings
 """"""""""""""""""""""""""""""
-NeoBundle 'Yggdroot/indentLine'
-" let g:indentLine_faster = 1
-let g:indentLine_color_term = 240
-nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-
-"Git tool for vim
-NeoBundle 'tpope/vim-fugitive'
-
 "show diff of git while editing
 NeoBundle 'akiomik/git-gutter-vim'
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
+" Challenging Stage
+""""""""""""""""""""""""""""""
+"Git tool for vim
+NeoBundle 'tpope/vim-fugitive'
 """"""""""""""""""""""""""""""
 
 
