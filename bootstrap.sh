@@ -14,3 +14,13 @@ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.s
 # Install oh-my-zsh
 echo "Installing oh-my-zsh..."
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# Install go
+echo "Installing golang..."
+brew install go
+
+# Install peco
+echo "Installing peco..."
+go get github.com/lestrrat/peco/cmd/peco/
+
+echo "Rock On! Happy Coding!"
