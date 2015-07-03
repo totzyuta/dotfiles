@@ -1,4 +1,5 @@
 echo "Hi, welcome to playground"
+autoload -Uz add-zsh-hook
 
 # for peco
 function peco-select-history() {
@@ -58,8 +59,22 @@ export ZSH_CONFIG="$CONFIG_HOME/zsh"
 source "$ZSH_CONFIG/aliases.zsh"
 source "$ZSH_CONFIG/exports.zsh"
 
-bindkey '^r' peco-select-history
+bindkey '^h' peco-select-history
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+rbenv_version () {
+  if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
+    if [[ "`rbenv version | grep 'RBENV_VERSION'`" = "" ]];then
+      local setting="L"
+    else 
+      local setting="V"
+    fi
+  else
+    local setting="G"
+  fi
+  RPROMPT="☕  `rbenv version | cut -f1 -d' '`($setting)"
+}
+add-zsh-hook precmd rbenv_version
