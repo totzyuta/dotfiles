@@ -56,6 +56,13 @@ rbenv_version () {
 }
 add-zsh-hook precmd rbenv_version
 
+# ls when changing directory
+cdls ()
+{
+    \cd "$@" && ls
+}
+alias cd="cdls"
+
 # for peco
 function peco-select-history() {
   local tac
