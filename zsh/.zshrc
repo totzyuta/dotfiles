@@ -1,29 +1,9 @@
 echo "Hi, welcome to playground"
 autoload -Uz add-zsh-hook
 
-# for peco
-function peco-select-history() {
-  local tac
-  if which tac > /dev/null; then
-    tac="tac"
-  else
-    tac="tail -r"
-  fi
-  if [ -n "$LBUFFER" ]; then
-    BUFFER=$(\history -n 1 | \
-      eval $tac | \
-      ~/.go/bin/peco --query "$LBUFFER")
-  else
-    BUFFER=$(\history -n 1 | \
-      eval $tac | \
-      ~/.go/bin/peco)
-  fi
-  CURSOR=$#BUFFER
-  zle clear-screen
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
-
+####################
+#    oh-my-zsh     #
+####################
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -46,7 +26,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 
-
 ####################
 # my configuration #
 ####################
@@ -59,12 +38,10 @@ export ZSH_CONFIG="$CONFIG_HOME/zsh"
 source "$ZSH_CONFIG/aliases.zsh"
 source "$ZSH_CONFIG/exports.zsh"
 
-bindkey '^h' peco-select-history
+# rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
+# Show Ruby version of rbenv 
 rbenv_version () {
   if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
     if [[ "`rbenv version | grep 'RBENV_VERSION'`" = "" ]];then
@@ -78,3 +55,26 @@ rbenv_version () {
   RPROMPT="☕  `rbenv version | cut -f1 -d' '`($setting)"
 }
 add-zsh-hook precmd rbenv_version
+
+# for peco
+function peco-select-history() {
+  local tac
+  if which tac > /dev/null; then
+    tac="tac"
+  else
+    tac="tail -r"
+  fi
+  if [ -n "$LBUFFER" ]; then
+    BUFFER=$(\history -n 1 | \
+      eval $tac | \
+      ~/.go/bin/peco --query "$LBUFFER")
+  else
+    BUFFER=$(\history -n 1 | \
+      eval $tac | \
+      ~/.go/bin/peco)
+  fi
+  CURSOR=$#BUFFER
+  zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
