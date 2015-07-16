@@ -10,6 +10,7 @@ alias vi=/usr/local/bin/vim # its for brew vim
 
 # git
 alias gitlog="git log --graph --branches --pretty=format:'%d [%h] \"%s\"'"
+alias gitst="git status -sb"
 
 # bundler
 alias be="bundle exec"
