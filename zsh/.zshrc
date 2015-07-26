@@ -1,4 +1,3 @@
-echo "Hi, welcome to playground"
 autoload -Uz add-zsh-hook
 
 ####################
@@ -85,3 +84,10 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
+
+echo "                     "
+echo "                     "
+echo "      ~-_  Enjoy     "
+echo "     _-~     Coding! "
+echo "   c|_|              " 
+echo "                     "
