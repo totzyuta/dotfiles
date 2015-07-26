@@ -3,7 +3,9 @@
 :speech_balloon:
 
 - zsh
+- tmux
 - vim
+- git
 
 
 ## Using it

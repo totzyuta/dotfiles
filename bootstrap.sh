@@ -5,6 +5,7 @@ ln -sf ~/dotfiles/.bash_profile ~/.bash_profile
 mv ~/.zshrc ~/.zshrc.org
 ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.xvimrc ~/.xvimrc
+ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 # Git Aliases
 echo ">>> Setting git aliases..."
