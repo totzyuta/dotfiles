@@ -46,17 +46,11 @@ set scrolloff=5
 set clipboard+=unnamed
 set clipboard=unnamed
 
-"Enable incremental search
-set incsearch
-
 "Show command in status row
 set showcmd
 
 "auto indent
 set autoindent
-
-"Hilight hidden by double ESC
-nnoremap <ESC><ESC> :nohlsearch<CR>
 
 "Keep space of indent
 set smartindent
@@ -70,9 +64,6 @@ set expandtab
 set wildmenu
 "Show list
 set wildmode=list:full
-
-"Enable hilight by search
-set hlsearch
 
 "move to brancket
 nnoremap [ %
@@ -93,6 +84,9 @@ imap <C-f> <Right>
 nnoremap ; :
 nnoremap : ;
 
+" Line Break without entering insert mode
+nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
+
 " increment for alphabet
 set nf=alpha
 
@@ -100,7 +94,21 @@ set nf=alpha
 autocmd BufNewFile,BufRead *.rb nnoremap <C-p> :!ruby %
 autocmd BufNewFile,BufRead *.py nnoremap <C-p> :!python %
 autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
-""""""""""""""""""""
+""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""
+" Search Setting 
+""""""""""""""""""""""""""""""
+"Enable incremental search
+set incsearch
+
+"Hilight hidden by double ESC
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
+"Enable hilight by search
+set hlsearch
+""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""
