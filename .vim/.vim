@@ -1,1 +1,0 @@
-/Users/totz/dotfiles/.vim
