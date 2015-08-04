@@ -9,6 +9,7 @@ ln -sf ~/dotfiles/.vimrc ~/.vimrc
 # use same vimrc for xcode
 ln -sf ~/dotfiles/.vimrc ~/.xvimrc
 ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/zsh ~/.zsh
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 # Git Aliases

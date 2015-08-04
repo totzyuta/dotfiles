@@ -90,6 +90,9 @@ if [ -f ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.z
   source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+# back transition to directory
+. $HOME/.zsh/plugins/bd/bd.zsh
+
 echo "                     "
 echo "                     "
 echo "      ~-_  Enjoy     "
