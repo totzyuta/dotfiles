@@ -93,6 +93,11 @@ fi
 # back transition to directory
 . $HOME/.zsh/plugins/bd/bd.zsh
 
+# autojump prefix
+if [ -f /usr/local/Cellar/autojump/22.2.4/share/autojump/autojump.zsh ]; then
+  source /usr/local/Cellar/autojump/22.2.4/share/autojump/autojump.zsh
+fi
+
 echo "                     "
 echo "                     "
 echo "      ~-_  Enjoy     "
