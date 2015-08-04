@@ -85,6 +85,11 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+# source zsh-syntax-highlighting
+if [ -f ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 echo "                     "
 echo "                     "
 echo "      ~-_  Enjoy     "
