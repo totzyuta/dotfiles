@@ -1,14 +1,6 @@
 # My ~/.*
 
-```
-
-      ~-_  Enjoy
-     _-~     Coding!
-   c|_|
-
-
-
-```
+![](https://raw.github.com/wiki/totzyuta/dotfiles/images/screenshot.png)
 
 ## :speech_balloon:
 
