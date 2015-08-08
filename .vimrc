@@ -106,6 +106,9 @@ nnoremap j gj
 xnoremap j gj
 nnoremap k gk
 xnoremap k gk
+
+" select all lines
+nnoremap g<C-a> ggVG
 """"""""""""""""""""""""""""""
 
 
