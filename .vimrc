@@ -94,6 +94,9 @@ set nf=alpha
 autocmd BufNewFile,BufRead *.rb nnoremap <C-p> :!ruby %
 autocmd BufNewFile,BufRead *.py nnoremap <C-p> :!python %
 autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
+
+" edit vimrc asap 
+nnoremap <F5> :vsplit $MYVIMRC<CR>
 """"""""""""""""""""""""""""""
 
 
