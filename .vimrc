@@ -100,6 +100,12 @@ nnoremap <F5> :vsplit $MYVIMRC<CR>
 
 " source right after editing vimrc
 nnoremap <F4> :<C-u>source $MYVIMRC<CR>
+
+" move as it looks
+nnoremap j gj
+xnoremap j gj
+nnoremap k gk
+xnoremap k gk
 """"""""""""""""""""""""""""""
 
 
