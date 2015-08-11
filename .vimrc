@@ -25,6 +25,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 """"""""""""""""""""
 " Basic Setting 
 """"""""""""""""""""
+" change <Leader> key
+let mapleader = "\<Space>"
+
 " Encoding utf-8
 set encoding=utf-8
 
@@ -106,9 +109,24 @@ nnoremap j gj
 xnoremap j gj
 nnoremap k gk
 xnoremap k gk
+nnoremap gj j
+xnoremap gj j
+nnoremap gk k
+xnoremap gk k
 
 " select all lines
 nnoremap g<C-a> ggVG
+
+" easily commenting out
+NeoBundle 'scrooloose/nerdcommenter'
+" to change mapping keys
+let g:NERDCreateDefaultMappings = 0
+" insert a space after commenter
+let NERDSpaceDelims = 1
+" mappings
+nmap <Leader>/ <Plug>NERDCommenterToggle
+vmap <Leader>/ <Plug>NERDCommenterToggle
+nmap <Leader>/a <Plug>NERDCommenterAppend
 """"""""""""""""""""""""""""""
 
 
