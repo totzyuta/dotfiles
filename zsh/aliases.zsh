@@ -6,6 +6,9 @@
 alias ns="networksetup -setairportpower en0"
 # show your network interface name
 alias nc="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan"
+# clipboard for OS X
+alias pc="pbcopy"
+alias pp="pbpaste"
 
 # applications
 alias o="open -a"
