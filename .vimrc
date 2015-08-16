@@ -153,10 +153,14 @@ NeoBundle 'jpalardy/vim-slime'
 " Check syntacs error
 NeoBundle 'scrooloose/syntastic'
 
+" Check Ruby Style 
+NeoBundle 'ngmy/vim-rubocop'
+nnoremap <Leader>r :RuboCop<CR>
+
 " For great references
 NeoBundle 'rizzatti/dash.vim'
 
-"Benchmark for vimrc
+" Benchmark for vimrc
 NeoBundle 'mattn/benchvimrc-vim'
 
 " Comment out easily by '\c'
