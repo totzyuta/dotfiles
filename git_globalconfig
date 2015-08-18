@@ -7,6 +7,8 @@ git config --global alias.co checkout
 git config --global alias.st 'status'
 # cm = commit -v
 git config --global alias.cm 'commit -v'
+# ac = add . && commit
+git config --global alias.ac '!git add -A && git commit'
 # df = diff 
 git config --global alias.df 'diff'
 # br = branch
