@@ -59,9 +59,10 @@ set autoindent
 set smartindent
 
 "Setting of TAB
-set tabstop=2
-set shiftwidth=2
 set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 "Strong auto command
 set wildmenu
@@ -127,6 +128,9 @@ let NERDSpaceDelims = 1
 nmap <Leader>/ <Plug>NERDCommenterToggle
 vmap <Leader>/ <Plug>NERDCommenterToggle
 nmap <Leader>/a <Plug>NERDCommenterAppend
+
+" extend f move
+NeoBundle 'rhysd/clever-f.vim'
 """"""""""""""""""""""""""""""
 
 
