@@ -129,6 +129,9 @@ nmap <Leader>/ <Plug>NERDCommenterToggle
 vmap <Leader>/ <Plug>NERDCommenterToggle
 nmap <Leader>/a <Plug>NERDCommenterAppend
 
+" not insert comment automatically
+set formatoptions-=ro
+
 " extend f move
 NeoBundle 'rhysd/clever-f.vim'
 """"""""""""""""""""""""""""""
