@@ -20,7 +20,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-
+" vim for Rails
+NeoBundle 'tpope/vim-rails'
 
 """"""""""""""""""""
 " Basic Setting 
