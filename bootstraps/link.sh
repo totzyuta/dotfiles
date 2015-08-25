@@ -15,6 +15,7 @@ ln -sf ~/dotfiles/.xvimrc ~/.xvimrc
 ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/zsh ~/.zsh
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.pryrc ~/.pryrc
 
 # Git Aliases
 echo ">>> Setting git aliases..."
