@@ -95,11 +95,6 @@ nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 " increment for alphabet
 set nf=alpha
 
-"Run Script on Vim
-autocmd BufNewFile,BufRead *.rb nnoremap <C-p> :!ruby %
-autocmd BufNewFile,BufRead *.py nnoremap <C-p> :!python %
-autocmd BufNewFile,BufRead *.pl nnoremap <C-p> :!perl %
-
 " edit vimrc asap 
 nnoremap <F5> :vsplit $MYVIMRC<CR>
 
@@ -135,6 +130,12 @@ set formatoptions-=ro
 
 " extend f move
 NeoBundle 'rhysd/clever-f.vim'
+
+"Run Script on Vim
+autocmd BufNewFile,BufRead *.rb nnoremap <Leader>s :!ruby %
+autocmd BufNewFile,BufRead *.py nnoremap <Leader>s :!python %
+autocmd BufNewFile,BufRead *.pl nnoremap <Leader>s :!perl %
+autocmd BufNewFile,BufRead *.go nnoremap <Leader>s :!go run %
 """"""""""""""""""""""""""""""
 
 
