@@ -22,3 +22,15 @@ alias be="bundle exec"
 # git 
 # open a remote by browser
 alias openremote='git remote show origin | grep Fetch | cut -d ":" -f2 -f3 | cut -d "." -f1 -f2 | xargs python -mwebbrowser'
+
+# ctags
+# alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+alias ctags='`brew --prefix`/bin/ctags'
+
+# Heroku
+# open remote app
+# alias herokuopen='git remote show heroku | grep {$1} | cut -f4 -d "/" | cut -f1 -d "." | tail -n 1 | xargs heroku open --app'
+alias herokuopen='git remote show "{$1}"'
+
+# check my IP address
+alias myip='echo "dig +short myip.opendns.com @resolver1.opendns.com"; dig +short myip.opendns.com @resolver1.opendns.com'
