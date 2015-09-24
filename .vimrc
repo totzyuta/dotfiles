@@ -20,8 +20,9 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" vim for Rails
-NeoBundle 'tpope/vim-rails'
+" github completation in md
+NeoBundle 'rhysd/github-complete.vim'
+
 
 """"""""""""""""""""
 " Basic Setting 
