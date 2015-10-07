@@ -3,6 +3,8 @@
 
 # co = checkout
 git config --global alias.co checkout
+# co with peco
+git config --global alias.pco '!git branch -a | peco | xargs git co'
 # st = status
 git config --global alias.st 'status'
 # cm = commit -v
