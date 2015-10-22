@@ -34,3 +34,6 @@ alias herokuopen='git remote show "{$1}"'
 
 # check my IP address
 alias myip='echo "dig +short myip.opendns.com @resolver1.opendns.com"; dig +short myip.opendns.com @resolver1.opendns.com'
+
+# free memory
+alias behoimi="sudo purge"
