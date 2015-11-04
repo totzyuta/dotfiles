@@ -18,8 +18,9 @@ alias vi=/usr/local/bin/vim # its for brew vim
 
 # bundler
 alias be="bundle exec"
+alias bi="bundle install"
 
-# git 
+# git
 # open a remote by browser
 alias openremote='git remote show origin | grep Fetch | cut -d ":" -f2 -f3 | cut -d "." -f1 -f2 | xargs python -mwebbrowser'
 
