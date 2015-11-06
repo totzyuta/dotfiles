@@ -1,5 +1,5 @@
 """"""""""""""""""""
-" NeoBundle 
+" NeoBundle
 """"""""""""""""""""
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
@@ -23,9 +23,24 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " github completation in md
 NeoBundle 'rhysd/github-complete.vim'
 
+" Rails muscle
+NeoBundle 'tpope/vim-rails'
+
+" Ruby `end`
+" Error: conflict with neocomplcache
+"NeoBundle 'tpope/vim-endwise'
+
+" highlight log file (which has ANSI data)
+NeoBundle 'vim-scripts/AnsiEsc.vim'
+
+" highlight space in the end of line
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+" Red-Green-Refactor Cycle on Vim
+" NeoBundle 'jodosha/vim-greenbar'
 
 """"""""""""""""""""
-" Basic Setting 
+" Basic Setting
 """"""""""""""""""""
 " change <Leader> key
 let mapleader = "\<Space>"
@@ -33,7 +48,7 @@ let mapleader = "\<Space>"
 " Encoding utf-8
 set encoding=utf-8
 
-" Auto detecting file types off 
+" Auto detecting file types off
 " and turn on in the end of this file
 filetype off
 filetype plugin indent off
@@ -75,7 +90,7 @@ set wildmode=list:full
 nnoremap [ %
 nnoremap ] %
 
-"autocompletation for brankets 
+"autocompletation for brankets
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
@@ -96,7 +111,7 @@ nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 " increment for alphabet
 set nf=alpha
 
-" edit vimrc asap 
+" edit vimrc asap
 nnoremap <F5> :vsplit $MYVIMRC<CR>
 
 " source right after editing vimrc
@@ -141,7 +156,7 @@ autocmd BufNewFile,BufRead *.go nnoremap <Leader>s :!go run %
 
 
 """"""""""""""""""""""""""""""
-" Search Setting 
+" Search Setting
 """"""""""""""""""""""""""""""
 "Enable incremental search
 set incsearch
@@ -157,15 +172,16 @@ set hlsearch
 """"""""""""""""""""""""""""""
 " Libraries
 """"""""""""""""""""""""""""""
-" Emacs like key binding 
+" Emacs like key binding
 NeoBundle 'jpalardy/vim-slime'
 
 " Check syntacs error
 NeoBundle 'scrooloose/syntastic'
 
-" Check Ruby Style 
+" Check Ruby Style
 NeoBundle 'ngmy/vim-rubocop'
 nnoremap <Leader>r :RuboCop<CR>
+"let g:vimrubocop_config = '~/dotfiles/vim/rubocop.yml'
 
 " For great references
 NeoBundle 'rizzatti/dash.vim'
@@ -178,12 +194,16 @@ NeoBundle "tyru/caw.vim.git"
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 
-" Tree 
+" Tree
 NeoBundle 'scrooloose/nerdtree'
 "ForNERDTree shortcut
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 highlight SignColumn guibg=black
 highlight SignColumn ctermbg=black
+"Launch NERDTree when without args
+if !argc()
+  autocmd vimenter * NERDTree|normal gg3j
+endif
 """"""""""""""""""""""""""""""
 
 
@@ -303,6 +323,10 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 """"""""""""""""""""""""""""""
 "Git tool for vim
 NeoBundle 'tpope/vim-fugitive'
+
+" TDD
+map <leader>t :!greenbar bundle exec ruby<cr>
+map <leader>te :!greenbar bundle exec rspec %<cr>
 """"""""""""""""""""""""""""""
 
 
