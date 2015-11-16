@@ -38,6 +38,10 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 
 " Red-Green-Refactor Cycle on Vim
 " NeoBundle 'jodosha/vim-greenbar'
+"
+" moving easily
+NeoBundle 'easymotion/vim-easymotion'
+
 
 """"""""""""""""""""
 " Basic Setting
