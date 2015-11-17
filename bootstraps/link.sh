@@ -1,6 +1,6 @@
 # This script links all dotfiles and git global configs
-# 
-# It can be run by `$ sh ../bootstrap.sh` 
+#
+# It can be run by `$ sh ../bootstrap.sh`
 # and also only it can be if other scripts are unncecessary.
 
 echo ">>> Linking dotfiles with home directory..."
