@@ -22,7 +22,15 @@ alias bi="bundle install"
 
 # git
 # open a remote by browser
-alias openremote='git remote show origin | grep Fetch | cut -d ":" -f2 -f3 | cut -d "." -f1 -f2 | xargs python -mwebbrowser'
+openremote() {
+  if [ $# -eq 0 ]
+  then
+    git remote show "origin" | grep Fetch | cut -d ":" -f2 -f3 | cut -d "." -f1 -f2 | xargs python -mwebbrowser
+  else
+    git remote show ${1} | grep Fetch | cut -d ":" -f2 -f3 | cut -d "." -f1 -f2 | xargs python -mwebbrowser
+  fi
+}
+
 
 # ctags
 # alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
