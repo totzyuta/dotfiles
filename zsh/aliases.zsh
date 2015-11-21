@@ -14,7 +14,8 @@ alias pp="pbpaste"
 alias o="open -a"
 alias chrome="open -a 'google chrome'"
 alias starttoday="open -a 'google chrome' | open -a mail | open -a ical | open -a iterm"
-alias vi=/usr/local/bin/vim # its for brew vim
+alias vi=/usr/local/bin/vim # brewed vim
+alias v=/usr/local/bin/vim # brewed vim
 
 # bundler
 alias be="bundle exec"
