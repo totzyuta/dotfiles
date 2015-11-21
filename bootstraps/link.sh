@@ -10,11 +10,11 @@ echo ">>> Linking dotfiles with home directory..."
 # mv ~/.zshrc ~/.zshrc.org
 # mv ~/.tmux.conf ~/.tmux.conf.org
 ln -sf ~/dotfiles/.vim ~/.vim
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.xvimrc ~/.xvimrc
-ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/vimrc ~/.vimrc
+ln -sf ~/dotfiles/xvimrc ~/.xvimrc
+ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
 ln -sf ~/dotfiles/zsh ~/.zsh
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.pryrc ~/.pryrc
 
 # Git Aliases

@@ -36,6 +36,7 @@ export ZSH_CONFIG="$CONFIG_HOME/zsh"
 # Import zsh config files
 source "$ZSH_CONFIG/aliases.zsh"
 source "$ZSH_CONFIG/exports.zsh"
+source "$ZSH_CONFIG/functions.zsh"
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
