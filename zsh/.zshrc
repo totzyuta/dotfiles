@@ -40,12 +40,12 @@ source "$ZSH_CONFIG/exports.zsh"
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Show Ruby version of rbenv 
+# Show Ruby version of rbenv
 rbenv_version () {
   if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
     if [[ "`rbenv version | grep 'RBENV_VERSION'`" = "" ]];then
       local setting="L"
-    else 
+    else
       local setting="V"
     fi
   else
@@ -102,5 +102,5 @@ echo "                     "
 echo "                     "
 echo "      ~-_  Enjoy     "
 echo "     _-~     Coding! "
-echo "   c|_|              " 
+echo "   c|_|              "
 echo "                     "

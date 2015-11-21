@@ -42,6 +42,11 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 " moving easily
 NeoBundle 'easymotion/vim-easymotion'
 
+" Synstax Highlight for JavaScript
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+
+" highlight the character which can move directly to (by `f`,`F`,`t`,`T`)
+NeoBundle 'deris/vim-shot-f'
 
 """"""""""""""""""""
 " Basic Setting
