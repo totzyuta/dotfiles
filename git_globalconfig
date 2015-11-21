@@ -31,3 +31,5 @@ git config --global alias.st 'status -sb'
 # utils
 # showremote = remote -v
 git config --global alias.showremote 'remote -v'
+# dbranch = delete all merged branches
+git config --global alias.dbranch 'branch --merged | grep -vE "^\*|master$|develop$" | xargs -I % git branch -d %'
