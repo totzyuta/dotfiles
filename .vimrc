@@ -45,8 +45,13 @@ NeoBundle 'easymotion/vim-easymotion'
 " Synstax Highlight for JavaScript
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
-" highlight the character which can move directly to (by `f`,`F`,`t`,`T`)
+" Highlight the character which can move directly to (by `f`,`F`,`t`,`T`)
 NeoBundle 'deris/vim-shot-f'
+
+" Looking up documentation by `gK`
+NeoBundle 'keith/investigate.vim'
+let g:investigate_use_dash=1
+
 
 """"""""""""""""""""
 " Basic Setting
