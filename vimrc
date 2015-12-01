@@ -253,6 +253,9 @@ NeoBundle 'bling/vim-airline'
 "Enable Syntax hilight
 syntax enable
 
+" erb file
+autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+
 "For Python syntacs hilight
 let python_highlight_all = 1
 
