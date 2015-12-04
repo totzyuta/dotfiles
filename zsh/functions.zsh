@@ -53,3 +53,15 @@ openremote() {
     git remote show ${1} | grep Fetch | cut -d ":" -f2 -f3 | cut -d "." -f1 -f2 | xargs python -mwebbrowser
   fi
 }
+
+200check() {
+  while true
+  do
+    RESULT=`curl --head ${1} | grep HTTP`
+    echo $RESULT
+    if [[ $RESULT =~ "200" ]]; then
+      osascript -e 'display notification "🍻" with title "200"'
+    fi
+    sleep 5
+  done
+}
