@@ -99,6 +99,16 @@ if [ -f /usr/local/Cellar/autojump/22.2.4/share/autojump/autojump.zsh ]; then
   source /usr/local/Cellar/autojump/22.2.4/share/autojump/autojump.zsh
 fi
 
+# Set current directory name to tmux tab
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' formats '%r'
+precmd () {
+  LANG=en_US.UTF-8 vcs_info
+  [[ -n ${vcs_info_msg_0_} ]] && tmux rename-window $vcs_info_msg_0_
+}
+
+
 echo "                     "
 echo "                     "
 echo "      ~-_  Enjoy     "
