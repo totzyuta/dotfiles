@@ -1,0 +1,18 @@
+#! bin/zsh
+
+# Ruby version of rbenv
+rbenv_version () {
+  if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
+    if [[ "`rbenv version | grep 'RBENV_VERSION'`" = "" ]];then
+      local setting="L"
+    else
+      local setting="V"
+    fi
+  else
+    local setting="G"
+  fi
+  RPROMPT="☕  `rbenv version | cut -f1 -d' '`($setting)"
+}
+
+# Show in status bar
+add-zsh-hook precmd rbenv_version

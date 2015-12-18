@@ -1,0 +1,8 @@
+#! bin/zsh
+
+# ls when changing directory
+cdls ()
+{
+    \cd "$@" && ls
+}
+alias cd="cdls"

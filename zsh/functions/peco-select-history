@@ -1,0 +1,22 @@
+#! bin/zsh
+
+# history shortcut with peco
+function peco-select-history() {
+  local tac
+  if which tac > /dev/null; then
+    tac="tac"
+  else
+    tac="tail -r"
+  fi
+  if [ -n "$LBUFFER" ]; then
+    BUFFER=$(\history -n 1 | \
+      eval $tac | \
+      ~/.go/bin/peco --query "$LBUFFER")
+  else
+    BUFFER=$(\history -n 1 | \
+      eval $tac | \
+      ~/.go/bin/peco)
+  fi
+  CURSOR=$#BUFFER
+  zle clear-screen
+}
