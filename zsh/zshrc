@@ -38,6 +38,10 @@ source "$ZSH_CONFIG/aliases.zsh"
 source "$ZSH_CONFIG/exports.zsh"
 source "$ZSH_CONFIG/functions.zsh"
 
+# suggest options like `ls -` and TAB
+autoload -U compinit
+compinit
+
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
