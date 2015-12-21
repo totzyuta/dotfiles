@@ -13,6 +13,3 @@ rbenv_version () {
   fi
   RPROMPT="☕  `rbenv version | cut -f1 -d' '`($setting)"
 }
-
-# Show in status bar
-add-zsh-hook precmd rbenv_version

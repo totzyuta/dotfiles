@@ -89,6 +89,10 @@ for i in $(ls $ZSH_CONFIG/zsh/functions) ; do autoload -U $i ; done
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+# Show in status bar
+add-zsh-hook precmd rbenv_version
+
+
 # All Done!
 # =========
 
