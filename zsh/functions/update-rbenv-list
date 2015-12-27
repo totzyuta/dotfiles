@@ -1,0 +1,7 @@
+#! /bin/zsh
+
+# Update Ruby versions of rbenv's ruby-build plugin
+update-rbenv-list() {
+  cd ~/.rbenv/plugins/ruby-build
+  git pull origin master
+}
