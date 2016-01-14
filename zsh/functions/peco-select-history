@@ -1,7 +1,7 @@
 #! bin/zsh
 
 # history shortcut with peco
-function peco-select-history() {
+peco-select-history() {
   local tac
   if which tac > /dev/null; then
     tac="tac"

@@ -21,3 +21,6 @@ brew install tmux reattach-to-user-namespace
 # easy jump tool
 # source setting script file in .zshrc
 brew install autojump
+
+# peco
+brew install peco
