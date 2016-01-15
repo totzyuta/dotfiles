@@ -24,3 +24,6 @@ brew install autojump
 
 # peco
 brew install peco
+
+# ag: the_silver_searcher
+brew install ag
