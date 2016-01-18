@@ -27,3 +27,6 @@ brew install peco
 
 # ag: the_silver_searcher
 brew install ag
+
+# htop
+brwe install htop
