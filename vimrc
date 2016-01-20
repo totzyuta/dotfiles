@@ -179,6 +179,9 @@ autocmd BufNewFile,BufRead *.rb nnoremap <Leader>s :!ruby %
 autocmd BufNewFile,BufRead *.py nnoremap <Leader>s :!python %
 autocmd BufNewFile,BufRead *.pl nnoremap <Leader>s :!perl %
 autocmd BufNewFile,BufRead *.go nnoremap <Leader>s :!go run %
+
+" open current file by RubyMine
+nnoremap <Leader>m :!open -a rubymine %
 """"""""""""""""""""""""""""""
 
 
