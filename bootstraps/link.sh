@@ -11,7 +11,7 @@ mv ~/.zshrc ~/.zshrc.org
 mv ~/.tmux.conf ~/.tmux.conf.org
 
 # link new dotfiles
-ln -sf ~/dotfiles/.vim ~/.vim
+ln -sf ~/dotfiles/vim ~/.vim
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/xvimrc ~/.xvimrc
 ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc

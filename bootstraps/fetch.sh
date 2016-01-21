@@ -11,10 +11,6 @@ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.s
 echo ">>> Installing oh-my-zsh..."
 curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 
-# Install go
-echo ">>> Installing golang..."
-brew install go
-
 # Install peco
 echo ">>> Installing peco..."
 go get github.com/lestrrat/peco/cmd/peco/

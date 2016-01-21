@@ -30,3 +30,7 @@ brew install ag
 
 # htop
 brwe install htop
+
+# Install go
+echo ">>> Installing golang..."
+brew install go
