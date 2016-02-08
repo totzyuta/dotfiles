@@ -2,20 +2,24 @@
 #   aliases   #
 ###############
 
+# General
+# cd with ls
+alias cd="cdls"
+# clipboard for OS X
+alias pc="pbcopy"
+alias pp="pbpaste"
+
 # System
 # toggle WiFi network on/off
 # to enter network, `SSID PASS` follows
 alias ns="networksetup -setairportpower en0"
 # show your network interface name
 alias nc="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan"
-# clipboard for OS X
-alias pc="pbcopy"
-alias pp="pbpaste"
 
 # applications
 alias o="open -a"
 alias chrome="open -a 'google chrome'"
-alias starttoday="open -a 'google chrome' | open -a mail | open -a ical | open -a iterm"
+alias workspace="open -a 'google chrome' https://onebox.esa.io | open -a 'google chrome' https://messenger.com | open -a 'google chrome' https://github.com/totzyuta | open -a mail | open -a ical | open -a slack | open -a terminal"
 alias vi=/usr/local/bin/vim # brewed vim
 alias v=/usr/local/bin/vim # brewed vim
 
