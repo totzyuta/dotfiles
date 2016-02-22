@@ -5,6 +5,7 @@
 sh ~/dotfiles/bootstraps/link.sh
 sh ~/dotfiles/bootstraps/brew.sh
 sh ~/dotfiles/bootstraps/fetch.sh
+sh ~/dotfiles/bootstraps/ruby-build.sh
 
 # into zsh
 zsh
