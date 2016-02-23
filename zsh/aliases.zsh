@@ -41,3 +41,6 @@ alias myip='echo "dig +short myip.opendns.com @resolver1.opendns.com"; dig +shor
 
 # free memory
 alias behoimi="sudo purge"
+
+# How's the weather today in Tokyo?
+alias weather="curl -sS wttr.in/Tokyo | head -27"
