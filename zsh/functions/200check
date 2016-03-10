@@ -1,15 +1,15 @@
-#! bin/zsh
+#! /bin/zsh
 
 # Check 200 OK
 
 200check() {
   while true
   do
-    RESULT=`curl --head ${1} | grep HTTP`
+    RESULT=`curl -sS --head ${1} | grep HTTP`
     echo $RESULT
     if [[ $RESULT =~ "200" ]]; then
       osascript -e 'display notification "🍻" with title "200"'
     fi
-    sleep 5
+    sleep 3
   done
 }
