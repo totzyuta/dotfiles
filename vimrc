@@ -251,7 +251,7 @@ nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 
 " Customized status line
 set laststatus=2
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
   let g:airline#extensions#branch#enabled = 0
   let g:airline_section_b =
         \ '%{airline#extensions#branch#get_head()}' .
@@ -260,6 +260,7 @@ NeoBundle 'bling/vim-airline'
   let g:airline_section_c = ''
   let g:airline_theme='bubblegum'
   let g:airline#extensions#whitespace#enabled = 0
+NeoBundle 'vim-airline/vim-airline-themes'
 """"""""""""""""""""""""""""""
 
 
