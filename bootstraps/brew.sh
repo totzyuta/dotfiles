@@ -34,3 +34,6 @@ brwe install htop
 # Install go
 echo ">>> Installing golang..."
 brew install go
+
+# fortune: displays a pseudorandom
+brew install fortune
