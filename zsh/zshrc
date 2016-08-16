@@ -66,9 +66,7 @@ fi
 . $HOME/.zsh/plugins/bd/bd.zsh
 
 # autojump prefix
-if [ -f /usr/local/Cellar/autojump/22.3.0/share/autojump/autojump.zsh ]; then
-  source /usr/local/Cellar/autojump/22.3.0/share/autojump/autojump.zsh
-fi
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Set current directory name to tmux tab
 autoload -Uz vcs_info
