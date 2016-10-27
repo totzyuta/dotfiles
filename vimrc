@@ -128,6 +128,9 @@ NeoBundle 'Townk/vim-autoclose'
 "move like emacs
 imap <C-f> <Right>
 
+" esc by c-j
+imap <c-j> <esc>
+
 " Replace only in command mode
 nnoremap ; :
 nnoremap : ;
