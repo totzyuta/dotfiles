@@ -50,6 +50,13 @@ export ZSH_CONFIG="$CONFIG_HOME/.zsh"
 source "$ZSH_CONFIG/aliases.zsh"
 source "$ZSH_CONFIG/exports.zsh"
 
+# Keep history
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+
 # suggest options like `ls -` and TAB
 autoload -U compinit
 compinit
@@ -76,6 +83,9 @@ precmd () {
   LANG=en_US.UTF-8 vcs_info
   [[ -n ${vcs_info_msg_0_} ]] && tmux rename-window $vcs_info_msg_0_
 }
+
+# share zsh history
+setopt share_history
 
 # Functions
 # ---------
@@ -112,3 +122,10 @@ echo "  #############       |_____|_|_|_| |___|_  |  |_____|___|___|_|_|_|_  |__
 echo "#################               |___|   |___|                      |___|     "
 
 fortune
+
+# nvm settings
+[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+nvm use default
+npm_dir=${NVM_PATH}_modules
+export NODE_PATH=$npm_dir
+source ~/.nvm/nvm.sh
