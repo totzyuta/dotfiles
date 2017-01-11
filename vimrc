@@ -185,6 +185,9 @@ autocmd BufNewFile,BufRead *.go nnoremap <Leader>s :!go run %
 
 " open current file by RubyMine
 nnoremap <Leader>m :!open -a rubymine %
+
+" ES6
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 """"""""""""""""""""""""""""""
 
 
@@ -349,7 +352,7 @@ inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 " Git Settings
 """"""""""""""""""""""""""""""
 "show diff of git while editing
-NeoBundle 'akiomik/git-gutter-vim'
+NeoBundle 'airblade/vim-gitgutter'
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 """"""""""""""""""""""""""""""
