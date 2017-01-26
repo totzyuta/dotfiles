@@ -65,6 +65,14 @@ NeoBundle 'deris/vim-shot-f'
 NeoBundle 'keith/investigate.vim'
 let g:investigate_use_dash=1
 
+" Minimup like Sublime
+NeoBundle 'severin-lemaignan/vim-minimap'
+let g:minimap_show='<leader>ms'
+let g:minimap_update='<leader>mu'
+let g:minimap_close='<leader>mc'
+let g:minimap_toggle='<leader>mt'
+let g:minimap_highlight='Visual'
+autocmd VimEnter * Minimap
 
 """"""""""""""""""""
 " Basic Setting
