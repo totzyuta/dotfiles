@@ -36,6 +36,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " github completation in md
 NeoBundle 'rhysd/github-complete.vim'
 
+" Vim Color Scheme
+NeoBundle 'joshdick/onedark.vim'
+
 " Rails muscle
 NeoBundle 'tpope/vim-rails'
 
@@ -72,7 +75,6 @@ let g:minimap_update='<leader>mu'
 let g:minimap_close='<leader>mc'
 let g:minimap_toggle='<leader>mt'
 let g:minimap_highlight='Visual'
-autocmd VimEnter * Minimap
 
 """"""""""""""""""""
 " Basic Setting
@@ -390,3 +392,5 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 """"""""""""""""""""
+
+colorscheme onedark
