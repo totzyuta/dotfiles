@@ -44,3 +44,6 @@ alias behoimi="sudo purge"
 
 # How's the weather today in Tokyo?
 alias weather="curl -sS wttr.in/Tokyo | head -27"
+
+# Do not rm, it's dangerous...
+alias rm='rmtrash'
