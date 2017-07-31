@@ -15,6 +15,8 @@ alias pp="pbpaste"
 alias ns="networksetup -setairportpower en0"
 # show your network interface name
 alias nc="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan"
+# Restart SystemUIServer
+alias killsus="kill -9 `ps aux | grep 'SystemUIServer' | grep -v 'grep' | awk '{ print $2 }'`"
 
 # applications
 alias o="open -a"
