@@ -5,6 +5,7 @@ export PATH=$PATH:/usr/texbin
 export PATH=$PATH:/usr/local/heroku/bin
 export PATH=$PATH:$HOME/.rbenv/bin
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.cargo/bin # Rust
 
 # go
 export GOROOT=/usr/local/opt/go/libexec

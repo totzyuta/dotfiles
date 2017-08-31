@@ -21,7 +21,7 @@ alias killsus="kill -9 `ps aux | grep 'SystemUIServer' | grep -v 'grep' | awk '{
 # applications
 alias o="open -a"
 alias chrome="open -a 'google chrome'"
-alias workspace="open -a 'google chrome' https://onebox.esa.io | open -a 'google chrome' https://messenger.com | open -a 'google chrome' https://github.com/totzyuta | open -a mail | open -a ical | open -a slack | open -a terminal"
+alias playground="open -a 'google chrome' | open -a 'Airmail Beta 2' | open -a ical | open -a slack | open -a 'FreeChat for Facebook Messenger' | open -a 'line'"
 alias vi=/usr/local/bin/vim # brewed vim
 alias v=/usr/local/bin/vim # brewed vim
 
