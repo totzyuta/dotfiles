@@ -315,6 +315,11 @@ let php_htmlInStrings = 1
 
 "Hilight for Scala
 NeoBundle "derekwyatt/vim-scala"
+
+"for TypeScript
+NeoBundle 'leafgarland/typescript-vim'
+autocmd BufRead,BufNewFile *.ts set filetype=typescript
+autocmd BufRead,BufNewFile *.tsx set filetype=typescript
 """"""""""""""""""""""""""""""
 
 
