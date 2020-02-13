@@ -1,2 +1,2 @@
-rbenv install 2.3.0
-rbenv global 2.3.0
+rbenv install 2.5.1
+rbenv global 2.5.1
