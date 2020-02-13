@@ -15,11 +15,13 @@ alias pp="pbpaste"
 alias ns="networksetup -setairportpower en0"
 # show your network interface name
 alias nc="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan"
+# Restart SystemUIServer
+alias killsus="kill -9 `ps aux | grep 'SystemUIServer' | grep -v 'grep' | awk '{ print $2 }'`"
 
 # applications
 alias o="open -a"
 alias chrome="open -a 'google chrome'"
-alias workspace="open -a 'google chrome' https://onebox.esa.io | open -a 'google chrome' https://messenger.com | open -a 'google chrome' https://github.com/totzyuta | open -a mail | open -a ical | open -a slack | open -a terminal"
+alias playground="open -a 'google chrome' | open -a 'Franz' | open -a slack | open -a Asana"
 alias vi=/usr/local/bin/vim # brewed vim
 alias v=/usr/local/bin/vim # brewed vim
 
@@ -44,3 +46,6 @@ alias behoimi="sudo purge"
 
 # How's the weather today in Tokyo?
 alias weather="curl -sS wttr.in/Tokyo | head -27"
+
+# Do not rm, it's dangerous...
+alias rm='rmtrash'
