@@ -36,6 +36,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " github completation in md
 NeoBundle 'rhysd/github-complete.vim'
 
+" Vim Color Scheme
+NeoBundle 'joshdick/onedark.vim'
+
 " Rails muscle
 NeoBundle 'tpope/vim-rails'
 
@@ -65,6 +68,13 @@ NeoBundle 'deris/vim-shot-f'
 NeoBundle 'keith/investigate.vim'
 let g:investigate_use_dash=1
 
+" Minimup like Sublime
+NeoBundle 'severin-lemaignan/vim-minimap'
+let g:minimap_show='<leader>ms'
+let g:minimap_update='<leader>mu'
+let g:minimap_close='<leader>mc'
+let g:minimap_toggle='<leader>mt'
+let g:minimap_highlight='Visual'
 
 """"""""""""""""""""
 " Basic Setting
@@ -128,6 +138,9 @@ NeoBundle 'Townk/vim-autoclose'
 "move like emacs
 imap <C-f> <Right>
 
+" esc by c-j
+imap <c-j> <esc>
+
 " Replace only in command mode
 nnoremap ; :
 nnoremap : ;
@@ -182,6 +195,9 @@ autocmd BufNewFile,BufRead *.go nnoremap <Leader>s :!go run %
 
 " open current file by RubyMine
 nnoremap <Leader>m :!open -a rubymine %
+
+" ES6
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 """"""""""""""""""""""""""""""
 
 
@@ -299,6 +315,11 @@ let php_htmlInStrings = 1
 
 "Hilight for Scala
 NeoBundle "derekwyatt/vim-scala"
+
+"for TypeScript
+NeoBundle 'leafgarland/typescript-vim'
+autocmd BufRead,BufNewFile *.ts set filetype=typescript
+autocmd BufRead,BufNewFile *.tsx set filetype=typescript
 """"""""""""""""""""""""""""""
 
 
@@ -346,7 +367,7 @@ inoremap <expr><CR>  pumvisible() ? neocomplcache#close_popup() : "<CR>"
 " Git Settings
 """"""""""""""""""""""""""""""
 "show diff of git while editing
-NeoBundle 'akiomik/git-gutter-vim'
+NeoBundle 'airblade/vim-gitgutter'
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 """"""""""""""""""""""""""""""
@@ -376,3 +397,5 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 """"""""""""""""""""
+
+colorscheme onedark
