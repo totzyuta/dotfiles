@@ -100,6 +100,23 @@ bindkey '^r' peco-select-history
 # Show in status bar
 add-zsh-hook precmd rbenv_version
 
+# nvm settings
+[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+nvm use default
+npm_dir=${NVM_PATH}_modules
+export NODE_PATH=$npm_dir
+source ~/.nvm/nvm.sh
+
+# vim solving errors
+# export LC_ALL=en_JP.UTF-8
+# export LC_CTYPE=en_JP.UTF-8
+# export LC_NUMERIC=en_JP.UTF-8
+# export LC_TIME=en_JP.UTF-8
+# export LC_COLLATE=en_JP.UTF-8
+# export LC_MONETARY=en_JP.UTF-8
+# export LC_MESSAGES=en_JP.UTF-8
+LANG=en_JP.UTF-8
+
 
 # All Done!
 # =========
@@ -122,10 +139,3 @@ echo "  #############       |_____|_|_|_| |___|_  |  |_____|___|___|_|_|_|_  |__
 echo "#################               |___|   |___|                      |___|     "
 
 fortune
-
-# nvm settings
-[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
-nvm use default
-npm_dir=${NVM_PATH}_modules
-export NODE_PATH=$npm_dir
-source ~/.nvm/nvm.sh

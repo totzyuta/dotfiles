@@ -37,3 +37,9 @@ brew install go
 
 # fortune: displays a pseudorandom
 brew install fortune
+
+# nvm
+brew install nvm
+
+# rmtrash
+brew install rmtrash

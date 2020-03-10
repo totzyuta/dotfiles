@@ -49,3 +49,8 @@ alias weather="curl -sS wttr.in/Tokyo | head -27"
 
 # Do not rm, it's dangerous...
 alias rm='rmtrash'
+
+# # autojump
+# # GitHub : https://github.com/wting/autojump
+# alias j='autojump'
+# 
