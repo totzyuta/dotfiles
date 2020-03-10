@@ -9,6 +9,10 @@ brew update
 # Upgrade any already-installed formulae
 brew upgrade
 
+# Install go
+echo ">>> Installing golang..."
+brew install go
+
 # vim by homebrew
 brew install vim
 
@@ -22,18 +26,11 @@ brew install tmux reattach-to-user-namespace
 # source setting script file in .zshrc
 brew install autojump
 
-# peco
-brew install peco
-
 # ag: the_silver_searcher
 brew install ag
 
 # htop
 brwe install htop
-
-# Install go
-echo ">>> Installing golang..."
-brew install go
 
 # fortune: displays a pseudorandom
 brew install fortune
@@ -43,3 +40,6 @@ brew install nvm
 
 # rmtrash
 brew install rmtrash
+
+# peco
+brew install peco
