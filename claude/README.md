@@ -20,9 +20,15 @@ Claude Code のステータスラインスクリプト。`bootstrap.sh` を実�
 }
 ```
 
-表示内容:
-- 1行目: モデル名 | worktree名 or ディレクトリ名 | gitブランチ + 変更状況
-- 2行目: コンテキスト使用率バー | セッションコスト | 経過時間 | 5時間枠使用率 | 週次枠使用率
+表示内容（1行、[Catppuccin Frappé](https://github.com/catppuccin/catppuccin) 配色）:
+
+モデル名(effort) │ worktree名/ディレクトリ名 │ gitブランチ + 変更状況 │ PR番号 + PR全体のdiff │
+コンテキスト使用率バー │ input/outputトークン数 │ セッションコスト │ 経過時間 │
+キャッシュヒット率 │ 5時間枠使用率 │ 週次枠使用率
+
+- PR番号・diffは `gh pr diff` で取得（30秒キャッシュ、`gh` 未認証/未インストール時は非表示）
+- アイコン・絵文字は使わず、縦棒区切りのみでレイアウト崩れを防止
+- 候補の比較検討は dotfiles PR #12 のセッションログ参照（[Nord](https://www.nordtheme.com/) / [Gruvbox](https://github.com/morhetz/gruvbox) / [statuslin.es](https://statuslin.es/) の複数案を実機比較した上でCatppuccin Frappéベースのカスタム版に決定）
 
 ## TODO: chezmoi 移行
 
