@@ -8,6 +8,7 @@
 - tmux
 - vim
 - git
+- [claude code](claude/README.md)
 
 
 ## Using it
