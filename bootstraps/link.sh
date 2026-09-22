@@ -19,6 +19,10 @@ ln -sf ~/dotfiles/zsh ~/.zsh
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.pryrc ~/.pryrc
 
+# Claude Code
+mkdir -p ~/.claude
+ln -sf ~/dotfiles/claude/statusline.sh ~/.claude/statusline.sh
+
 # Git Aliases
 echo ">>> Setting git aliases..."
 ./git_globalconfig
