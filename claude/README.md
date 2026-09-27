@@ -20,11 +20,12 @@ Claude Code のステータスラインスクリプト。`bootstrap.sh` を実�
 }
 ```
 
-表示内容（1行、[Catppuccin Frappé](https://github.com/catppuccin/catppuccin) 配色）:
+表示内容（[Catppuccin Frappé](https://github.com/catppuccin/catppuccin) 配色）:
 
-モデル名(effort) │ worktree名/ディレクトリ名 │ gitブランチ + 変更状況 │ PR番号 + PR全体のdiff │
-コンテキスト使用率バー │ input/outputトークン数 │ セッションコスト │ 経過時間 │
-キャッシュヒット率 │ 5時間枠使用率 │ 週次枠使用率
+- 1行目: モデル名(effort) │ worktree名/ディレクトリ名 │ gitブランチ + 変更状況 │ PR番号 + PR全体のdiff │ コンテキスト使用率バー
+- 2行目: input/outputトークン数 │ セッションコスト │ 経過時間 │ キャッシュヒット率 │ 5時間枠使用率バー │ 週次枠使用率バー
+
+`tput cols` でターミナル幅を検出し、両方が収まる広さがあれば1行、収まらない狭いターミナル（iTerm半分割など）では自動的に2行へ折り返す。session/weekはcontextと同じブロックバー表現（幅5、%はバーと同色）。
 
 - PR番号・diffは `gh pr diff` で取得（30秒キャッシュ、`gh` 未認証/未インストール時は非表示）
 - アイコン・絵文字は使わず、縦棒区切りのみでレイアウト崩れを防止
