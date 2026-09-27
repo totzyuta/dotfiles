@@ -1,16 +1,23 @@
-# This script installs libraries.
-#
-# It can be run by `$ sh ../bootstrap.sh`
-# and also only it can be if other scripts are unncecessary.
+#!/bin/bash
+# Install frameworks/plugins that aren't plain Homebrew formulae.
+# Idempotent — safe to re-run.
+set -e
 
-# Install neobundle
-echo ">>> Installing neobundle..."
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo ">>> Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
 
-# Install oh-my-zsh
-echo ">>> Installing oh-my-zsh..."
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
-# Install peco
-echo ">>> Installing peco..."
-go get github.com/lestrrat/peco/cmd/peco/
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+  echo ">>> Installing zsh-autosuggestions..."
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+fi
+
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+  echo ">>> Installing zsh-syntax-highlighting..."
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+fi
+
+echo ">>> vim-plug and its plugins install themselves the first time vim opens."

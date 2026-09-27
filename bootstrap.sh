@@ -1,16 +1,15 @@
+#!/bin/bash
 #
-# This is a script to run setup files
+# Sets up a new machine from this dotfiles repo. Safe to re-run.
 #
+set -e
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-sh ~/dotfiles/bootstraps/link.sh
-sh ~/dotfiles/bootstraps/brew.sh
-sh ~/dotfiles/bootstraps/fetch.sh
-sh ~/dotfiles/bootstraps/ruby-build.sh
+sh "$DOTFILES_DIR/bootstraps/brew.sh"
+sh "$DOTFILES_DIR/bootstraps/fetch.sh"
+sh "$DOTFILES_DIR/bootstraps/link.sh"
 
-# into zsh
-zsh
-
-echo "\n"
+echo ""
 echo "##############################"
 echo "#   Rock On! Happy Coding!   #"
 echo "##############################"
