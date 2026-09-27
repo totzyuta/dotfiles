@@ -1,7 +1,11 @@
 #!/bin/bash
-# Claude Code custom statusline — Catppuccin Frappé, single line, no icons.
-# model(effort) | worktree/dir | branch+status | PR #N +add/-del | context bar % |
-# tokens in/out | cost | duration | cache hit% | session(5h)% | week(7d)%
+# Claude Code custom statusline — Catppuccin Frappé, no icons.
+# line1: model(effort) | worktree/dir | branch+status | PR #N +add/-del | context bar %
+# line2: tokens in/out | cost | duration | cache hit% | session(5h) bar% | week(7d) bar%
+#
+# Renders as a single line when the terminal is wide enough to fit both;
+# falls back to two lines (line1/line2 above) on a narrow terminal (e.g. a
+# half-screen iTerm split) so nothing gets cut off.
 #
 # PR diff uses `gh pr diff` (network call, cached 30s) — falls back to hiding
 # the +add/-del segment if `gh` is unavailable or the call fails.
@@ -156,32 +160,47 @@ else
     DURATION_FMT="${DURATION_M}m"
 fi
 
-LINE="${LAVENDER}${MODEL}${RESET}"
-[ -n "$EFFORT" ] && LINE="$LINE ${OVERLAY}(${EFFORT})${RESET}"
-LINE="$LINE ${OVERLAY}│${RESET} ${TEAL}${LOCATION}${RESET}"
-[ -n "$GITPART" ] && LINE="$LINE ${OVERLAY}│${RESET} $GITPART"
+# --- line1: identity/location ---
+LINE1="${LAVENDER}${MODEL}${RESET}"
+[ -n "$EFFORT" ] && LINE1="$LINE1 ${OVERLAY}(${EFFORT})${RESET}"
+LINE1="$LINE1 ${OVERLAY}│${RESET} ${TEAL}${LOCATION}${RESET}"
+[ -n "$GITPART" ] && LINE1="$LINE1 ${OVERLAY}│${RESET} $GITPART"
 if [ -n "$PR_NUM" ]; then
-    LINE="$LINE ${OVERLAY}│${RESET} ${SUBTEXT}PR${RESET} ${BLUE}#${PR_NUM}${RESET}"
-    [ -n "$PR_DIFF_PART" ] && LINE="$LINE $PR_DIFF_PART"
+    LINE1="$LINE1 ${OVERLAY}│${RESET} ${SUBTEXT}PR${RESET} ${BLUE}#${PR_NUM}${RESET}"
+    [ -n "$PR_DIFF_PART" ] && LINE1="$LINE1 $PR_DIFF_PART"
 fi
-LINE="$LINE ${OVERLAY}│${RESET} ${BARCOLOR}${BAR}${RESET} ${SUBTEXT}${PCT}%${RESET}"
-LINE="$LINE ${OVERLAY}│${RESET} ${SUBTEXT}↓${IN_TOK_FMT} ↑${OUT_TOK_FMT}${RESET}"
-LINE="$LINE ${OVERLAY}│${RESET} ${SAPPHIRE}\$${COST_FMT}${RESET}"
-LINE="$LINE ${OVERLAY}│${RESET} ${SUBTEXT}${DURATION_FMT}${RESET}"
+LINE1="$LINE1 ${OVERLAY}│${RESET} ${BARCOLOR}${BAR}${RESET} ${SUBTEXT}${PCT}%${RESET}"
+
+# --- line2: usage/cost metrics ---
+LINE2="${SUBTEXT}↓${IN_TOK_FMT} ↑${OUT_TOK_FMT}${RESET}"
+LINE2="$LINE2 ${OVERLAY}│${RESET} ${SAPPHIRE}\$${COST_FMT}${RESET}"
+LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}${DURATION_FMT}${RESET}"
 if [ -n "$CACHE_PCT" ]; then
     if [ "$CACHE_PCT" -ge 80 ]; then CHC=$GREEN
     elif [ "$CACHE_PCT" -ge 50 ]; then CHC=$YELLOW
     else CHC=$RED
     fi
-    LINE="$LINE ${OVERLAY}│${RESET} ${SUBTEXT}cache${RESET} ${CHC}${CACHE_PCT}%${RESET}"
+    LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}cache${RESET} ${CHC}${CACHE_PCT}%${RESET}"
 fi
+
+render_bar() {
+    local pct=$1 width=$2
+    local filled=$((pct * width / 100))
+    [ "$filled" -gt "$width" ] && filled=$width
+    local empty=$((width - filled))
+    local bar=""
+    for ((i=0; i<filled; i++)); do bar="${bar}▓"; done
+    for ((i=0; i<empty; i++)); do bar="${bar}░"; done
+    echo "$bar"
+}
 
 if [ -n "$SESSION_PCT" ]; then
     if [ "$SESSION_PCT" -ge 80 ]; then SC=$RED
     elif [ "$SESSION_PCT" -ge 50 ]; then SC=$YELLOW
     else SC=$GREEN
     fi
-    LINE="$LINE ${OVERLAY}│${RESET} ${SUBTEXT}session${RESET} ${SC}${SESSION_PCT}%${RESET}"
+    SESSION_BAR=$(render_bar "$SESSION_PCT" 5)
+    LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}session${RESET} ${SC}${SESSION_BAR} ${SESSION_PCT}%${RESET}"
 fi
 
 if [ -n "$WEEK_PCT" ]; then
@@ -189,7 +208,23 @@ if [ -n "$WEEK_PCT" ]; then
     elif [ "$WEEK_PCT" -ge 50 ]; then WC=$YELLOW
     else WC=$GREEN
     fi
-    LINE="$LINE ${OVERLAY}│${RESET} ${SUBTEXT}week${RESET} ${WC}${WEEK_PCT}%${RESET}"
+    WEEK_BAR=$(render_bar "$WEEK_PCT" 5)
+    LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}week${RESET} ${WC}${WEEK_BAR} ${WEEK_PCT}%${RESET}"
 fi
 
-printf '%b' "$LINE"
+# --- one line if it fits the terminal width, otherwise two ---
+# Claude Code captures the script's stdout instead of connecting it to the
+# terminal, so `tput cols` can't see the real size — it sets $COLUMNS (and
+# $LINES) in the environment instead. See:
+# https://code.claude.com/docs/en/statusline#sizing-output-to-the-terminal
+COLS=${COLUMNS:-200}
+
+plain_len() {
+    printf '%s' "$1" | sed -E 's/\\033\[[0-9;]*m//g' | wc -m | tr -d ' '
+}
+
+if [ "$(( $(plain_len "$LINE1") + 3 + $(plain_len "$LINE2") ))" -le "$COLS" ]; then
+    printf '%b' "$LINE1 ${OVERLAY}│${RESET} $LINE2"
+else
+    printf '%b\n%b' "$LINE1" "$LINE2"
+fi
