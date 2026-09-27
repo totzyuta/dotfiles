@@ -117,8 +117,9 @@ fi
 
 # --- context bar (10 blocks, Catppuccin-style fill) ---
 BAR_WIDTH=10
-FILLED=$((PCT * BAR_WIDTH / 100))
+FILLED=$(((PCT * BAR_WIDTH + 50) / 100))
 [ "$FILLED" -gt "$BAR_WIDTH" ] && FILLED=$BAR_WIDTH
+[ "$FILLED" -eq 0 ] && [ "$PCT" -gt 0 ] && FILLED=1
 EMPTY=$((BAR_WIDTH - FILLED))
 
 if [ "$PCT" -ge 80 ]; then BARCOLOR=$RED
@@ -185,8 +186,9 @@ fi
 
 render_bar() {
     local pct=$1 width=$2
-    local filled=$((pct * width / 100))
+    local filled=$(((pct * width + 50) / 100))
     [ "$filled" -gt "$width" ] && filled=$width
+    [ "$filled" -eq 0 ] && [ "$pct" -gt 0 ] && filled=1
     local empty=$((width - filled))
     local bar=""
     for ((i=0; i<filled; i++)); do bar="${bar}▓"; done
