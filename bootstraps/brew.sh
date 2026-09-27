@@ -1,45 +1,21 @@
 #!/bin/bash
+# Install Homebrew and the formulae this dotfiles repo expects.
+set -e
 
-# Install Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if ! command -v brew >/dev/null 2>&1; then
+  echo ">>> Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-# Make sure we’re using the latest Homebrew
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+echo ">>> Updating Homebrew..."
 brew update
-
-# Upgrade any already-installed formulae
 brew upgrade
 
-# Install go
-echo ">>> Installing golang..."
-brew install go
-
-# vim by homebrew
-brew install vim
-
-# rbenv
-brew install rbenv ruby-build
-
-# tmux
-brew install tmux reattach-to-user-namespace
-
-# easy jump tool
-# source setting script file in .zshrc
-brew install autojump
-
-# ag: the_silver_searcher
-brew install ag
-
-# htop
-brwe install htop
-
-# fortune: displays a pseudorandom
-brew install fortune
-
-# nvm
-brew install nvm
-
-# rmtrash
-brew install rmtrash
-
-# peco
-brew install peco
+echo ">>> Installing formulae..."
+brew install vim tmux fzf zoxide

@@ -5,8 +5,8 @@
 git config --global alias.a add
 # co = checkout
 git config --global alias.co checkout
-# co with peco
-git config --global alias.pco '!git branch -a | peco | xargs git co'
+# co with fzf
+git config --global alias.pco '!git branch -a | fzf | sed "s#remotes/origin/##" | xargs git checkout'
 # st = status
 git config --global alias.st 'status'
 # cm = commit -v

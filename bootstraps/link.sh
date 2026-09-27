@@ -1,28 +1,47 @@
-# This script links all dotfiles and git global configs
+#!/bin/bash
+# Links this repo's dotfiles into the home directory. Safe to re-run.
 #
-# It can be run by `$ sh ../bootstrap.sh`
-# and also only it can be if other scripts are unncecessary.
+# Anything it would overwrite is backed up first under
+# ~/.dotfiles-backups/<timestamp>/ instead of just being clobbered.
+set -e
 
-echo ">>> Linking dotfiles with home directory..."
-# Take your hats off to the past, but take your coats off to the future.
-mv ~/.vimrc ~/.vimrc.org
-mv ~/.xvimrc ~/.xvimrc.org
-mv ~/.zshrc ~/.zshrc.org
-mv ~/.tmux.conf ~/.tmux.conf.org
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+BACKUP_DIR="$HOME/.dotfiles-backups/$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$BACKUP_DIR"
 
-# link new dotfiles
-ln -sf ~/dotfiles/vim ~/.vim
-ln -sf ~/dotfiles/vimrc ~/.vimrc
-ln -sf ~/dotfiles/xvimrc ~/.xvimrc
-ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
-ln -sf ~/dotfiles/zsh ~/.zsh
-ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.pryrc ~/.pryrc
+backup_and_remove() {
+  local target="$1"
+  if [ -e "$target" ] || [ -L "$target" ]; then
+    cp -a "$target" "$BACKUP_DIR/" 2>/dev/null || true
+    rm -rf "$target"
+  fi
+}
+
+echo ">>> Linking dotfiles into $HOME (backups -> $BACKUP_DIR if anything is replaced)..."
+
+# vim
+backup_and_remove ~/.vimrc
+ln -sf "$DOTFILES_DIR/vimrc" ~/.vimrc
+
+# tmux
+backup_and_remove ~/.tmux.conf
+ln -sf "$DOTFILES_DIR/tmux.conf" ~/.tmux.conf
+
+# zsh: the real ~/.zshrc stays owned by oh-my-zsh (theme/plugins/etc). We
+# only symlink our extras file and make sure ~/.zshrc sources it once.
+backup_and_remove ~/.zshrc.local
+ln -sf "$DOTFILES_DIR/zsh/zshrc" ~/.zshrc.local
+
+SOURCE_LINE='[ -f ~/.zshrc.local ] && source ~/.zshrc.local'
+if [ -f ~/.zshrc ] && ! grep -qF "$SOURCE_LINE" ~/.zshrc; then
+  cp -a ~/.zshrc "$BACKUP_DIR/.zshrc"
+  printf '\n# dotfiles extras\n%s\n' "$SOURCE_LINE" >> ~/.zshrc
+fi
 
 # Claude Code
 mkdir -p ~/.claude
-ln -sf ~/dotfiles/claude/statusline.sh ~/.claude/statusline.sh
+backup_and_remove ~/.claude/statusline.sh
+ln -sf "$DOTFILES_DIR/claude/statusline.sh" ~/.claude/statusline.sh
 
-# Git Aliases
 echo ">>> Setting git aliases..."
-./git_globalconfig
+(cd "$DOTFILES_DIR" && ./git_globalconfig)
