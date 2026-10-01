@@ -1,7 +1,7 @@
 #!/bin/bash
 # Claude Code custom statusline — Catppuccin Frappé, no icons.
 # line1: model(effort) | worktree/dir | branch+status | PR #N +add/-del | context bar %
-# line2: tokens in/out | cost | duration | cache hit% | session(5h) bar% | week(7d) bar%
+# line2: tokens in/out | cost | duration | cache hit% | session(5h) bar% (reset) | week(7d) bar% (reset)
 #
 # Renders as a single line when the terminal is wide enough to fit both;
 # falls back to two lines (line1/line2 above) on a narrow terminal (e.g. a
@@ -24,6 +24,8 @@ OUT_TOK=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
 CACHE_HIT=$(echo "$input" | jq -r '.prompt_cache.hit_ratio // empty')
 SESSION_PCT=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty' | cut -d. -f1)
 WEEK_PCT=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty' | cut -d. -f1)
+SESSION_RESET=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
+WEEK_RESET=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
 PR_NUM=$(echo "$input" | jq -r '.pr.number // empty')
 REPO_OWNER=$(echo "$input" | jq -r '.workspace.repo.owner // empty')
 REPO_NAME=$(echo "$input" | jq -r '.workspace.repo.name // empty')
@@ -196,22 +198,74 @@ render_bar() {
     echo "$bar"
 }
 
+# --- rate-limit reset display -------------------------------------------
+# resets_at is Unix epoch seconds (rate_limits.five_hour / seven_day).
+# STATUSLINE_RESET_STYLE:
+#   countdown (default)  session ▓▓░░░ 38% (2h13m)    week ▓░░░░ 12% (3d4h)
+#   clock                session ▓▓░░░ 38% (→23:00)    week ▓░░░░ 12% (→Fri 09:00)
+#   pace                 countdown + bar color follows pace (used% vs elapsed% of the window)
+# STATUSLINE_NOW overrides "now" (epoch seconds) for previews/tests.
+RESET_STYLE=${STATUSLINE_RESET_STYLE:-countdown}
+NOW=${STATUSLINE_NOW:-$(date +%s)}
+
+fmt_remaining() {
+    local s=$(($1 - NOW))
+    if [ "$s" -le 0 ]; then echo "now"; return; fi
+    local d=$((s / 86400)) h=$(((s % 86400) / 3600)) m=$(((s % 3600) / 60))
+    if [ "$d" -gt 0 ]; then echo "${d}d${h}h"
+    elif [ "$h" -gt 0 ]; then printf '%dh%02dm' "$h" "$m"
+    else echo "${m}m"
+    fi
+}
+
+fmt_clock() {   # $1=epoch  $2=short|long (long adds the weekday)
+    local fmt="+%H:%M"
+    [ "$2" = "long" ] && fmt="+%a %H:%M"
+    LC_ALL=C date -r "$1" "$fmt" 2>/dev/null || LC_ALL=C date -d "@$1" "$fmt" 2>/dev/null
+}
+
+# Color by pace: how much is used vs. how much of the window has elapsed.
+# Over-pace is what predicts hitting the limit, not the raw percentage.
+pace_color() {  # $1=used% $2=resets_at $3=window seconds
+    local used=$1 left=$(($2 - NOW)) win=$3
+    [ "$left" -lt 0 ] && left=0
+    local elapsed=$(((win - left) * 100 / win))
+    local over=$((used - elapsed))
+    if [ "$used" -ge 90 ] || [ "$over" -ge 25 ]; then echo "$RED"
+    elif [ "$over" -ge 10 ]; then echo "$YELLOW"
+    else echo "$GREEN"
+    fi
+}
+
+reset_part() {  # $1=resets_at  $2=short|long
+    [ -z "$1" ] && return
+    if [ "$RESET_STYLE" = "clock" ]; then
+        printf '%s' " ${OVERLAY}(→$(fmt_clock "$1" "$2"))${RESET}"
+    else
+        printf '%s' " ${OVERLAY}($(fmt_remaining "$1"))${RESET}"
+    fi
+}
+
 if [ -n "$SESSION_PCT" ]; then
-    if [ "$SESSION_PCT" -ge 80 ]; then SC=$RED
+    if [ "$RESET_STYLE" = "pace" ] && [ -n "$SESSION_RESET" ]; then
+        SC=$(pace_color "$SESSION_PCT" "$SESSION_RESET" 18000)
+    elif [ "$SESSION_PCT" -ge 80 ]; then SC=$RED
     elif [ "$SESSION_PCT" -ge 50 ]; then SC=$YELLOW
     else SC=$GREEN
     fi
     SESSION_BAR=$(render_bar "$SESSION_PCT" 5)
-    LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}session${RESET} ${SC}${SESSION_BAR} ${SESSION_PCT}%${RESET}"
+    LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}session${RESET} ${SC}${SESSION_BAR} ${SESSION_PCT}%${RESET}$(reset_part "$SESSION_RESET" short)"
 fi
 
 if [ -n "$WEEK_PCT" ]; then
-    if [ "$WEEK_PCT" -ge 80 ]; then WC=$RED
+    if [ "$RESET_STYLE" = "pace" ] && [ -n "$WEEK_RESET" ]; then
+        WC=$(pace_color "$WEEK_PCT" "$WEEK_RESET" 604800)
+    elif [ "$WEEK_PCT" -ge 80 ]; then WC=$RED
     elif [ "$WEEK_PCT" -ge 50 ]; then WC=$YELLOW
     else WC=$GREEN
     fi
     WEEK_BAR=$(render_bar "$WEEK_PCT" 5)
-    LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}week${RESET} ${WC}${WEEK_BAR} ${WEEK_PCT}%${RESET}"
+    LINE2="$LINE2 ${OVERLAY}│${RESET} ${SUBTEXT}week${RESET} ${WC}${WEEK_BAR} ${WEEK_PCT}%${RESET}$(reset_part "$WEEK_RESET" long)"
 fi
 
 # --- one line if it fits the terminal width, otherwise two ---
